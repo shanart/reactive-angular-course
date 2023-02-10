@@ -1,20 +1,20 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
-  concat,
-  fromEvent,
-  interval,
-  noop,
-  observable,
-  Observable,
-  of,
-  timer,
-  merge,
-  Subject,
-  BehaviorSubject,
-  AsyncSubject,
-  ReplaySubject, from
+    concat,
+    fromEvent,
+    interval,
+    noop,
+    observable,
+    Observable,
+    of,
+    timer,
+    merge,
+    Subject,
+    BehaviorSubject,
+    AsyncSubject,
+    ReplaySubject, from
 } from 'rxjs';
-import {delayWhen, filter, map, take, timeout} from 'rxjs/operators';
+import { delayWhen, filter, map, take, timeout } from 'rxjs/operators';
 
 
 
@@ -31,11 +31,11 @@ export class AboutComponent implements OnInit {
     }
 
 
-  run() {
+    run() {
 
 
 
-  }
+    }
 
 
 }
