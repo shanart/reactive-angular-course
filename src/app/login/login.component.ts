@@ -1,39 +1,42 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthStore } from '../services/auth.store';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+    form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router) {
+    constructor(
+        private fb: FormBuilder,
+        private router: Router,
+        private auth: AuthStore) {
+        this.form = fb.group({
+            email: ['test@angular-university.io', [Validators.required]],
+            password: ['test', [Validators.required]]
+        });
+    }
 
-    this.form = fb.group({
-      email: ['test@angular-university.io', [Validators.required]],
-      password: ['test', [Validators.required]]
-    });
+    ngOnInit() {
+    }
 
-  }
-
-  ngOnInit() {
-
-  }
-
-  login() {
-
-    const val = this.form.value;
-
-
-
-  }
-
+    login() {
+        const formValue = this.form.value;
+        this.auth.login(formValue.email, formValue.password)
+            .subscribe(
+                () => {
+                    this.router.navigateByUrl("/courses")
+                },
+                () => {
+                    alert("Login failed!");
+                }
+            )
+    }
 }
